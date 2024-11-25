@@ -31,3 +31,5 @@ class LoginPage(BasePage):
 
         self.click(self.password_recovery_page_button)
         self.wait_page_load(URLs.PASSWORD_RECOVERY_PAGE_URL)
+
+        

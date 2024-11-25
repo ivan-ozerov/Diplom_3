@@ -13,4 +13,5 @@ class TestLoginPage:
         login_page.go_to_password_recovery_page()
         assert driver.current_url == URLs.PASSWORD_RECOVERY_PAGE_URL
 
-    
+    def test_go_to_personal_page(self, driver, login):
+        login_page = LoginPage(driver)

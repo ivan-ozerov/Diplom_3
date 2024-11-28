@@ -3,6 +3,7 @@ from pages.base_page import BasePage
 from locators import Locators
 from helper import URLs
 from pages.header import Header
+from pages.main_page import MainPage
 from test_data import TestData
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -13,7 +14,6 @@ class ProfilePage(BasePage):
         self.logout_button = Locators.PROFILE_PAGE_LOGOUT_BUTTON
         self.order_history_button = Locators.PROFILE_PAGE_ORDER_HISTORY_BUTTON
         self.orders_last_order_number = Locators.PROFILE_PAGE_ORDER_HISTORY_ORDERS_NUMBERS
-        
 
     def open_order_history(self):
         header = Header(self.driver)

@@ -18,17 +18,17 @@ class LoginPage(BasePage):
 
     def login(self, credentials):
         self.driver.get(self.page_url)
-
         self.set_text_of(self.email_input_field, credentials['email'])
         self.set_text_of(self.password_input_field, credentials['password'])
+        self.wait(self.login_button)
+        self.wait_element_to_be_clickable(self.login_button)
         self.click(self.login_button)
-
         self.wait_page_load(URLs.MAIN_PAGE_URL)
 
     def go_to_password_recovery_page(self):
         self.driver.get(self.page_url)
         self.wait_page_load(self.page_url)
-
+        self.wait_element_to_be_clickable(self.password_recovery_page_button)
         self.click(self.password_recovery_page_button)
         self.wait_page_load(URLs.PASSWORD_RECOVERY_PAGE_URL)
 

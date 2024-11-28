@@ -1,7 +1,7 @@
 
 from pages.base_page import BasePage
 from locators import Locators
-from helper import URLs
+from helper import URLs, Driver
 from test_data import TestData
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
@@ -24,7 +24,9 @@ class MainPage(BasePage):
         self.driver.get(URLs.MAIN_PAGE_URL)
         self.wait_page_load(URLs.MAIN_PAGE_URL)
 
+
     def click_on_ingredient(self, element_locator):
+        self.wait(element_locator)
         self.click(element_locator)
         self.wait(self.ingredient_card_section)
 
@@ -39,10 +41,8 @@ class MainPage(BasePage):
         counter = self.get_text_of(element_locator)
         return counter
     
-    def drag_and_drop_element_in_basket(self, element_locator):
-        self.wait(self.ingredient)
-        ActionChains(self.driver).drag_and_drop(self.find(element_locator), self.find(self.constructor_basket)).perform()
-
+    def drag_and_drop_ingredient_to_basket(self, element_locator_to_drag):
+        return self.drag_and_drop_element(element_locator_to_drag, self.constructor_basket)    
 
     def click_create_order_button(self):
         self.click(self.create_order_button)
@@ -53,7 +53,7 @@ class MainPage(BasePage):
     def create_order(self, element_locator):
         self.go_to_main_page()
         self.wait(element_locator)
-        self.drag_and_drop_element_in_basket(element_locator)
+        self.drag_and_drop_ingredient_to_basket(element_locator)
         self.click_create_order_button()
         self.wait_until_value_not_present_in_element(self.order_identifiyer, '9999')
 

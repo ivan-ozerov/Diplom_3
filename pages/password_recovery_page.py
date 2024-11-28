@@ -16,8 +16,8 @@ class PasswordRecoveryPage(BasePage):
         self.email_field = Locators.PASSWORD_RECOVERY_PAGE_EMAIL_FIELD
         self.recovery_button = Locators.PASSWORD_RECOVERY_PAGE_RECOVERY_BUTTON
         
-    def go_to_password_reset_page(self, driver, email):
-        login_page = LoginPage(driver)
+    def go_to_password_reset_page(self, email):
+        login_page = LoginPage(self.driver)
         login_page.go_to_password_recovery_page()
         self.wait_page_load(self.page_url)
         self.set_text_of(self.email_field, email)

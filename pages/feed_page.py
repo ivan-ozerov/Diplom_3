@@ -39,11 +39,15 @@ class FeedPage(BasePage):
         self.wait(self.counter_of_orders_today)
         return self.get_text_of(self.counter_of_orders_today)
     
-    def get_orders_numbers_in_work(self):
+    def get_orders_numbers_in_work(self, order_number):
         all_orders_in_work_text = []
-        self.wait(self.in_work_orders)
-        self.wait_until_value_not_present_in_element(self.in_work_orders, 'Все текущие заказы готовы!')
-        all_orders_in_work = self.find_multiple(self.in_work_orders)
-        for order_in_work in all_orders_in_work:
-            all_orders_in_work_text.append(self.get_text_of_element(order_in_work)[1:])
-        return all_orders_in_work_text
+        number = None
+        for i in range(3):
+            self.wait(self.in_work_orders)
+            self.wait_until_value_not_present_in_element(self.in_work_orders, 'Все текущие заказы готовы!')
+            self.wait_until_value_be_present_in_element(self.in_work_orders, order_number)
+            number = self.find_multiple(self.in_work_orders)[0].text[1:]
+            if order_number == number:
+                break
+        return number == order_number 
+            

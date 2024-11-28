@@ -104,7 +104,7 @@ class Locators:
     #password_reset_page
 
     # кнопка "показать пароль"
-    PASSWORD_RESET_PAGE_SHOW_PASSWORD_BUTTON = (By.CSS_SELECTOR, ".input__icon.input__icon-action svg")
+    PASSWORD_RESET_PAGE_SHOW_PASSWORD_BUTTON = (By.CSS_SELECTOR, ".input__icon.input__icon-action")
     # поле ввода нового пароля
     PASSWORD_RESET_PAGE_PASSWORD_INPUT_FIELD = (By.CSS_SELECTOR, "input[name='Введите новый пароль']")
     # поле 
